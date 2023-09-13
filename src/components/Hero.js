@@ -8,7 +8,7 @@ export default function Hero() {
           BatmanWiki
         </h1>
         <p className="text-lg text-center shadow-lg">
-          Acá vas a encontrar todas las películas de Batman y su información
+          In this web page you can found Batman movies and more information
         </p>
       </div>
     </div>
