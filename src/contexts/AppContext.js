@@ -12,7 +12,7 @@ export const AppContextProvider = ({ children }) => {
   const getShows = useCallback(async () => {
     setLoading(true);
     try {
-      const showsReq = await axios.get('https://api.tvmaze.com/search/shows?q=batman');
+      const showsReq = await axios.get('https://api.tvmaze.com/search/shows?q=barbie');
       setShows(showsReq.data);
       setLoading(false);
     } catch (error) {

@@ -3,7 +3,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Shows', href: '#shows', current: true }
+  { name: 'Shows', href: '#shows', current: true },
+  { name: 'About', href: '#about', current: false }
 ]
 
 function classNames(...classes) {
@@ -12,14 +13,14 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-pink-600">
       {({ open }) => (
         <>
           <div id='shows' className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+            < div className="relative flex h-16 items-center justify-between" >
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -33,8 +34,8 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="https://seeklogo.com/images/B/Batman-logo-F8295E46F2-seeklogo.com.png"
-                    alt="Your Company"
+                    src="https://www.imagenspng.com.br/wp-content/uploads/2023/07/barbie-logo-png-14.png"
+                    alt="Barbie-home"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -44,7 +45,7 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-pink-400 text-white' : 'text-white hover:bg-pink-400 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -71,8 +72,8 @@ export default function Navbar() {
                   </Transition>
                 </Menu>
               </div>
-            </div>
-          </div>
+            </div >
+          </div >
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
@@ -82,7 +83,7 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current ? 'bg-pink-300 text-white' : 'text-gray-300 hover:bg-pink-300 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
@@ -93,7 +94,8 @@ export default function Navbar() {
             </div>
           </Disclosure.Panel>
         </>
-      )}
-    </Disclosure>
+      )
+      }
+    </Disclosure >
   )
 }
