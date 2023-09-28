@@ -5,11 +5,17 @@ const ShowSingleCard = ({ show }) => {
     <div className="min-h-screen bg-gray-800 text-white">
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-semibold mb-4 text-center">{show.name}</h1>
-        <div className="flex mb-4">
-          <div className="w-1/3">
-            <img src={show.image.medium} alt={show.name} className="w-full" />
+        <div className="flex flex-col md:flex-row mb-4">
+          {/* En pantallas medianas y grandes, muestra la imagen en la izquierda */}
+          <div className="md:w-1/3">
+            <img
+              src={show.image.medium}
+              alt={show.name}
+              className="w-full h-auto" // Establece el ancho completo y la altura automática
+              style={{ maxWidth: '300px', maxHeight: '450px' }} // Tamaño máximo deseado
+            />
           </div>
-          <div className="w-2/3 p-4">
+          <div className="md:w-2/3 p-4">
             <div className="mb-4">
               <p className="text-indigo-300">Genre:</p>
               <p className="text-white dark:text-white">
