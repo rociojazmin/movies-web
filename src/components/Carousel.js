@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
+import { useRouter } from 'next/router'; // Importa useRouter de Next.js
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const Carousel = () => {
     const [shows, setShows] = useState([]);
     const [loading, setLoading] = useState(true);
+    const router = useRouter(); // Agrega useRouter
 
     useEffect(() => {
         const fetchShows = async () => {
@@ -28,9 +30,9 @@ const Carousel = () => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5, // Mostrar 5 películas por pantalla
+        slidesToShow: 5,
         slidesToScroll: 1,
-        arrows: false, // Ocultar las flechas de navegación
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
@@ -59,9 +61,14 @@ const Carousel = () => {
         ],
     };
 
+    // Función para redirigir al usuario a la página de detalles
+    const handleShowClick = (showId) => {
+        router.push(`/show/${showId}`);
+    };
+
     return (
         <div id="shows" className="bg-pink-100 relative">
-            <div className=" h-1 w-full border-t border-pink-300"></div> {/* Solo la línea superior */}
+            <div className=" h-1 w-full border-t border-pink-300"></div>
             <div className="carousel-container mx-auto px-4">
                 <h1 className="text-3xl font-bold mb-6 pt-6 text-center text-pink-400">Movies</h1>
                 {loading ? (
@@ -70,7 +77,11 @@ const Carousel = () => {
                     <div className="relative pb-8">
                         <Slider {...settings} className="-mx-4">
                             {shows.map((show) => (
-                                <div key={show.show.id} className="carousel-item px-4">
+                                <div
+                                    key={show.show.id}
+                                    className="carousel-item px-4"
+                                    onClick={() => handleShowClick(show.show.id)} // Llama a la función de redirección al hacer clic
+                                >
                                     <div className="flex flex-col items-center">
                                         <img
                                             src={show.show.image?.medium || 'placeholder.jpg'}
@@ -83,22 +94,22 @@ const Carousel = () => {
                             ))}
                         </Slider>
                         <style jsx global>{`
-                            /* Estilos personalizados para limitar la cantidad de puntos (dots) */
-                            .slick-dots {
-                                display: flex !important;
-                                justify-content: center;
-                                align-items: center;
-                                margin-top: 20px;
-                            }
-                            /* Oculta todos los puntos */
-                            .slick-dots li {
-                                display: none !important;
-                            }
-                            /* Muestra solo los primeros 6 puntos */
-                            .slick-dots li:nth-child(-n+6) {
-                                display: block !important;
-                            }
-                        `}</style>
+              /* Estilos personalizados para limitar la cantidad de puntos (dots) */
+              .slick-dots {
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+              }
+              /* Oculta todos los puntos */
+              .slick-dots li {
+                display: none !important;
+              }
+              /* Muestra solo los primeros 6 puntos */
+              .slick-dots li:nth-child(-n+6) {
+                display: block !important;
+              }
+            `}</style>
                     </div>
                 )}
             </div>
