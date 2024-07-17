@@ -2,29 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import { useRouter } from 'next/router'; // Importa useRouter de Next.js
+import { useAppContext } from '@/contexts/AppContext';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Carousel = () => {
-    const [shows, setShows] = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const { shows, loading } = useAppContext();
     const router = useRouter(); // Agrega useRouter
 
-    useEffect(() => {
-        const fetchShows = async () => {
-            try {
-                const response = await axios.get('https://api.tvmaze.com/search/shows?q=barbie');
-                setShows(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error al obtener los programas:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchShows();
-    }, []);
 
     const settings = {
         dots: true,
